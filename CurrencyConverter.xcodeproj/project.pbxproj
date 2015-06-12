@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA57C81F1B2A367C00913C2C /* NextCurrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57C81E1B2A367C00913C2C /* NextCurrViewController.m */; };
+		DA57C8251B2B862D00913C2C /* roundIcons in Resources */ = {isa = PBXBuildFile; fileRef = DA57C8241B2B862D00913C2C /* roundIcons */; };
+		DA57C8271B2B86F400913C2C /* flags in Resources */ = {isa = PBXBuildFile; fileRef = DA57C8261B2B86F400913C2C /* flags */; };
+		DA57C82A1B2B8DEA00913C2C /* SearchingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */; };
 		DA720F451B24820D0019B309 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F441B24820D0019B309 /* main.m */; };
 		DA720F481B24820D0019B309 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F471B24820D0019B309 /* AppDelegate.m */; };
 		DA720F501B24820D0019B309 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA720F4F1B24820D0019B309 /* Images.xcassets */; };
@@ -14,7 +18,6 @@
 		DA720F5F1B24820D0019B309 /* CurrencyConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F5E1B24820D0019B309 /* CurrencyConverterTests.m */; };
 		DA720F741B2627050019B309 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F731B2627050019B309 /* MainViewController.m */; };
 		DA720F761B262EAD0019B309 /* images in Resources */ = {isa = PBXBuildFile; fileRef = DA720F751B262EAD0019B309 /* images */; };
-		DA720F781B2642840019B309 /* city in Resources */ = {isa = PBXBuildFile; fileRef = DA720F771B2642840019B309 /* city */; };
 		DA720F7A1B276AC30019B309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA720F791B276AC30019B309 /* Main.storyboard */; };
 		DA720F7C1B277A6D0019B309 /* currency in Resources */ = {isa = PBXBuildFile; fileRef = DA720F7B1B277A6D0019B309 /* currency */; };
 		DA720F7E1B27C5700019B309 /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA720F7D1B27C5700019B309 /* Raleway-ExtraLight.ttf */; };
@@ -31,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA57C81D1B2A367C00913C2C /* NextCurrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextCurrViewController.h; sourceTree = "<group>"; };
+		DA57C81E1B2A367C00913C2C /* NextCurrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextCurrViewController.m; sourceTree = "<group>"; };
+		DA57C8241B2B862D00913C2C /* roundIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = roundIcons; sourceTree = "<group>"; };
+		DA57C8261B2B86F400913C2C /* flags */ = {isa = PBXFileReference; lastKnownFileType = folder; path = flags; sourceTree = "<group>"; };
+		DA57C8281B2B8DEA00913C2C /* SearchingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingTableViewController.h; sourceTree = "<group>"; };
+		DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingTableViewController.m; sourceTree = "<group>"; };
 		DA720F3F1B24820D0019B309 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA720F431B24820D0019B309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA720F441B24820D0019B309 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,7 +53,6 @@
 		DA720F721B2627050019B309 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		DA720F731B2627050019B309 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		DA720F751B262EAD0019B309 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		DA720F771B2642840019B309 /* city */ = {isa = PBXFileReference; lastKnownFileType = folder; path = city; sourceTree = "<group>"; };
 		DA720F791B276AC30019B309 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA720F7B1B277A6D0019B309 /* currency */ = {isa = PBXFileReference; lastKnownFileType = folder; path = currency; sourceTree = "<group>"; };
 		DA720F7D1B27C5700019B309 /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -93,9 +101,14 @@
 				DA720F471B24820D0019B309 /* AppDelegate.m */,
 				DA720F721B2627050019B309 /* MainViewController.h */,
 				DA720F731B2627050019B309 /* MainViewController.m */,
+				DA57C8281B2B8DEA00913C2C /* SearchingTableViewController.h */,
+				DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */,
+				DA57C81D1B2A367C00913C2C /* NextCurrViewController.h */,
+				DA57C81E1B2A367C00913C2C /* NextCurrViewController.m */,
 				DA720F7D1B27C5700019B309 /* Raleway-ExtraLight.ttf */,
+				DA57C8261B2B86F400913C2C /* flags */,
+				DA57C8241B2B862D00913C2C /* roundIcons */,
 				DA720F7B1B277A6D0019B309 /* currency */,
-				DA720F771B2642840019B309 /* city */,
 				DA720F751B262EAD0019B309 /* images */,
 				DA720F4F1B24820D0019B309 /* Images.xcassets */,
 				DA720F791B276AC30019B309 /* Main.storyboard */,
@@ -213,7 +226,8 @@
 			files = (
 				DA720F761B262EAD0019B309 /* images in Resources */,
 				DA720F7A1B276AC30019B309 /* Main.storyboard in Resources */,
-				DA720F781B2642840019B309 /* city in Resources */,
+				DA57C8271B2B86F400913C2C /* flags in Resources */,
+				DA57C8251B2B862D00913C2C /* roundIcons in Resources */,
 				DA720F7C1B277A6D0019B309 /* currency in Resources */,
 				DA720F531B24820D0019B309 /* LaunchScreen.xib in Resources */,
 				DA720F7E1B27C5700019B309 /* Raleway-ExtraLight.ttf in Resources */,
@@ -235,7 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA57C82A1B2B8DEA00913C2C /* SearchingTableViewController.m in Sources */,
 				DA720F481B24820D0019B309 /* AppDelegate.m in Sources */,
+				DA57C81F1B2A367C00913C2C /* NextCurrViewController.m in Sources */,
 				DA720F741B2627050019B309 /* MainViewController.m in Sources */,
 				DA720F451B24820D0019B309 /* main.m in Sources */,
 			);

@@ -19,7 +19,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame: CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
     MainViewController *main = [[MainViewController alloc] init];
-    self.window.rootViewController = main;
+    UINavigationController *navigationController=[[UINavigationController alloc] initWithRootViewController:main];
+    self.window.rootViewController = navigationController;
     return YES;
 }
 
