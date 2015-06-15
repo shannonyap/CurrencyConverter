@@ -9,6 +9,7 @@
 #import "NextCurrViewController.h"
 
 #define circGray [UIColor colorWithRed:227/255.0 green:227/255.0 blue:227/255.0 alpha:1.0]
+#define lightGreen [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f]
 #define cirSize self.view.frame.size.height / 6.25
 
 @interface NextCurrViewController ()
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = self.navigationController.navigationBar.barTintColor;
+    self.view.backgroundColor = lightGreen;
     self.title = @"Conversion"; // set the title of the viewcontroller to the label
     self.methods = [[MainViewController alloc] init];
     self.methods.imgArr = [self.methods populateArr: self.methods.imgArr : @"png" : @"images"];

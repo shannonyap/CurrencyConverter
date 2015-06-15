@@ -11,7 +11,8 @@
 @interface SearchingTableViewController : UITableViewController
 
 @property UIBarButtonItem *doneButton;
+@property NSMutableArray *currency;
 
 - (void) done;
-
+- (NSMutableArray *) parseJSON;
 @end

@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define circGray [UIColor colorWithRed:227/255.0 green:227/255.0 blue:227/255.0 alpha:1.0]
+#define darkGreen [UIColor colorWithRed: 39/255.0 green: 174/255.0 blue: 96/255.0 alpha: 1.0f]
+#define lightGreen [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f]
 #define cirSize self.view.frame.size.height / 6.25
 
 @interface MainViewController ()
@@ -24,12 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed: 38/255.0 green: 237/255.0 blue: 161/255.0f alpha: 1.0f];
+    self.view.backgroundColor = [UIColor blackColor];
+    self.navigationController.navigationBar.barTintColor = darkGreen;
     imgArr = [self populateArr: imgArr : @"png" : @"flags"];
     currArr = [self populateArr: currArr : @"png" : @"images"];
 
-    cityCount = arc4random_uniform((int)imgArr.count + 1);
+    cityCount = arc4random_uniform((int)imgArr.count);
     nextCityCount = cityCount + 1;
     
     //city image
@@ -46,7 +48,7 @@
     
     // background gradient
     UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + self.cityView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.cityView.frame.size.height)];
-    background.backgroundColor = [UIColor colorWithRed: 38/255.0 green: 237/255.0 blue: 161/255.0f alpha: 1.0f];
+    background.backgroundColor = [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f];
     
     // search button
     UIImageView *searchCirc = [[UIImageView alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2 - circ.frame.size.width/2, self.view.frame.size.height * 0.675, cirSize, cirSize)];
@@ -171,7 +173,7 @@
 
 - (UILabel *) createAnimLabel:(CGRect)frame withDisplay: (NSString *)text {
     UILabel *someLabel = [[UILabel alloc] initWithFrame: frame];
-    someLabel.backgroundColor = [UIColor colorWithRed: 53/255.0 green: 212/255.0 blue: 151/255.0 alpha: 1.0f];
+    someLabel.backgroundColor = darkGreen;
     someLabel.layer.shadowOffset = CGSizeMake(0, 1);
     someLabel.layer.shadowRadius = 1;
     someLabel.layer.shadowOpacity = 0.4;
