@@ -16,7 +16,11 @@ Currency Converter
 - Minor bug fixes.
 - Implemented data fetching in JSON format
 
+6/16/15 
+- Finished ResultsViewController
+- Minor bug fixes and UI changes
+- The App is generally ready to go!
+
 To do 
-- Finish up ResultsViewController.
 - Optimize JSON data fetching.
  

@@ -20,7 +20,7 @@
 
 @implementation DecimalViewController
 
-@synthesize console, opcode, opPrev, firstNum, secondNum, pressMore, equalPress, consoleColor, buttonArray, colorArray, colorCount;
+@synthesize console, opcode, opPrev, firstNum, secondNum, pressMore, equalPress, consoleColor, buttonArray, colorArray, colorCount, goToRoot;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -264,9 +264,10 @@
     MainViewController *main = [self.navigationController.viewControllers objectAtIndex: 0];
     NextCurrViewController *next = [self.navigationController.viewControllers objectAtIndex: 1];
     ResultsViewController *results = [[ResultsViewController alloc] init];
+    results.delegate = self;
     results.dictMain = main.currInfo;
     results.dictNext = next.methods.currInfo;
-    results.amount = self.console.text.intValue;
+    results.amount = self.console.text.doubleValue;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:results];
     [self.navigationController presentViewController: navController animated: YES completion: nil];
 }
@@ -274,6 +275,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) addItemViewController:(ResultsViewController *)controller didFinishEnteringItem:(BOOL)decision {
+    self.goToRoot = decision;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.barTintColor = self.consoleColor.backgroundColor;
+    if (self.goToRoot){
+        [self.navigationController popToRootViewControllerAnimated: YES];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {

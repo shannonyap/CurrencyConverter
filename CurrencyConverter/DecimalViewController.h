@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResultsViewController.h"
 
-@interface DecimalViewController : UIViewController
+@interface DecimalViewController : UIViewController <ResultsViewControllerDelegate>
 
 @property (nonatomic, strong) UITextField *console;
 @property NSString *opcode;
@@ -21,6 +22,7 @@
 @property UIImageView *consoleColor;
 @property NSMutableArray *buttonArray;
 @property NSMutableArray *colorArray;
+@property BOOL goToRoot;
 
 - (void) tapNumber :(UIButton *)sender;
 - (void) removeTap :(UIButton *)sender;

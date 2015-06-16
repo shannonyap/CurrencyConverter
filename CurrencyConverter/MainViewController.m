@@ -32,7 +32,7 @@
     imgArr = [self populateArr: imgArr : @"png" : @"flags"];
     currArr = [self populateArr: currArr : @"png" : @"images"];
 
-    cityCount = arc4random_uniform((int)imgArr.count);
+    cityCount = arc4random_uniform((int)imgArr.count - 1);
     nextCityCount = cityCount + 1;
     
     //city image
@@ -220,6 +220,10 @@
     self.choose.text = [[updates valueForKey: @"name"] stringByAppendingString:  [@" - " stringByAppendingString: [updates valueForKey: @"currency"]]];
     self.worldView.image = [[UIImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: [updates valueForKey: @"name"] ofType: @"png" inDirectory: @"roundIcons"]];
     self.currInfo = updates;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.barTintColor = lightGreen;
 }
 
 - (void)didReceiveMemoryWarning {

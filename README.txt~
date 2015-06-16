@@ -11,6 +11,12 @@ Currency Converter
 - Implemented searching through list of currencies. 
 - Slight UI improvements
 
+6/15/15
+- Search bar is fully functional.
+- Minor bug fixes.
+- Implemented data fetching in JSON format
+
 To do 
-- Adhere to the flat ui design as suggested by Apple. 
-- Adding search capabilities soon.
+- Finish up ResultsViewController.
+- Optimize JSON data fetching.
+ 

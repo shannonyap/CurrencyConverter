@@ -114,7 +114,7 @@
     static NSString *CellIdentifier = @"countryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"countryCell"];
     if (cell == nil) {
-    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     //etc.
     NSDictionary *dict;
@@ -123,7 +123,11 @@
     } else {
         dict = [self.currency objectAtIndex: indexPath.section];
     }
-    cell.textLabel.text = [dict objectForKey: @"name"];
+    
+    cell.textLabel.text = [dict valueForKey: @"name"];
+    cell.detailTextLabel.text = [dict valueForKey: @"currCode"];
+    cell.textLabel.font = [UIFont systemFontOfSize: 12.0f];
+    cell.detailTextLabel.font = cell.textLabel.font;
     cell.imageView.image = [[UIImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: [[dict objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"-" withString: @" "] ofType:@"png" inDirectory: @"roundIcons"]];
     return cell;
 }
