@@ -11,9 +11,12 @@
 @interface MainViewController : UIViewController
 
 @property NSMutableArray *imgArr, *currArr;
-@property UIImageView *cityView, *nextCityView, *go, *goBar;
+@property UIImageView *cityView, *nextCityView, *go, *goBar, *worldView;
+@property UILabel *choose;
 @property int cityCount, nextCityCount;
 @property CGRect endFrame;
+@property NSDictionary *currInfo;
+@property UIButton *goButton;
 
 - (UIImageView *) getView: (NSMutableArray *)arr : (CGRect)frame :(int) imgNum withTag: (int) tag;
 - (NSMutableArray *) populateArr: (NSMutableArray *)arr :(NSString *)ext :(NSString *)dir;

@@ -11,13 +11,13 @@
 #define darkGreen [UIColor colorWithRed: 39/255.0 green: 174/255.0 blue: 96/255.0 alpha: 1.0f]
 #define lightGreen [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f]
 
-@interface SearchingTableViewController ()  <UISearchBarDelegate>
+@interface SearchingTableViewController () <UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
 
 @end
 
-@implementation SearchingTableViewController
+@implementation SearchingTableViewController 
 
-@synthesize doneButton, currency;
+@synthesize doneButton, currency, searchResults, delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,17 +27,21 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.title = @"Choose Currency";
     self.navigationController.navigationBar.barTintColor = darkGreen;
     self.doneButton = [[UIBarButtonItem alloc] initWithTitle: @"Done" style: UIBarButtonItemStyleDone target: self action: @selector(done)];
     self.navigationItem.leftBarButtonItem = self.doneButton;
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    searchBar.delegate = self;
-    searchBar.barTintColor = darkGreen;
-    searchBar.placeholder = @"Search for country name";
-    self.tableView.tableHeaderView = searchBar;
+    // configure search bar
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.barTintColor = darkGreen;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+    [self.searchController.searchBar sizeToFit];
+    
     self.currency = [self parseJSON];
 }
 
@@ -83,10 +87,20 @@
     return sad;
 }
 
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = searchController.searchBar.text;
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", searchString];
+    self.searchResults = [self.currency filteredArrayUsingPredicate: resultPredicate];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+    if (self.searchController.active) {
+        return self.searchResults.count;
+    }
     return self.currency.count;
 }
 
@@ -99,19 +113,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"countryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"countryCell"];
- 
     if (cell == nil) {
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     //etc.
-    NSDictionary *dict = [self.currency objectAtIndex: indexPath.section];
+    NSDictionary *dict;
+    if (self.searchController.active){
+        dict = [self.searchResults objectAtIndex: indexPath.section];
+    } else {
+        dict = [self.currency objectAtIndex: indexPath.section];
+    }
     cell.textLabel.text = [dict objectForKey: @"name"];
-    NSLog(@"%@", dict);
     cell.imageView.image = [[UIImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: [[dict objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"-" withString: @" "] ofType:@"png" inDirectory: @"roundIcons"]];
     return cell;
 }
 
-
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *dict;
+    if (self.searchController.active == YES){
+        dict = [self.searchResults objectAtIndex: indexPath.section];
+        [self.delegate updateCurrFor: self With: dict]; // pass the data back
+        self.searchController.active = false;
+        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+    } else {
+        dict = [self.currency objectAtIndex: indexPath.section];
+        [self.delegate updateCurrFor: self With: dict];
+        [self.presentingViewController dismissViewControllerAnimated: YES completion: nil];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

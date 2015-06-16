@@ -7,6 +7,10 @@ Currency Converter
 6/12/15
 - UI fixes and updates. 
 
+6/14/15
+- Implemented searching through list of currencies. 
+- Slight UI improvements
+
 To do 
 - Adhere to the flat ui design as suggested by Apple. 
 - Adding search capabilities soon.

@@ -11,6 +11,8 @@
 		DA57C8251B2B862D00913C2C /* roundIcons in Resources */ = {isa = PBXBuildFile; fileRef = DA57C8241B2B862D00913C2C /* roundIcons */; };
 		DA57C8271B2B86F400913C2C /* flags in Resources */ = {isa = PBXBuildFile; fileRef = DA57C8261B2B86F400913C2C /* flags */; };
 		DA57C82A1B2B8DEA00913C2C /* SearchingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */; };
+		DA57C82D1B2F7D0700913C2C /* DecimalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57C82C1B2F7D0700913C2C /* DecimalViewController.m */; };
+		DA57C8301B2F92C800913C2C /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57C82F1B2F92C800913C2C /* ResultsViewController.m */; };
 		DA720F451B24820D0019B309 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F441B24820D0019B309 /* main.m */; };
 		DA720F481B24820D0019B309 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA720F471B24820D0019B309 /* AppDelegate.m */; };
 		DA720F501B24820D0019B309 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA720F4F1B24820D0019B309 /* Images.xcassets */; };
@@ -40,6 +42,10 @@
 		DA57C8261B2B86F400913C2C /* flags */ = {isa = PBXFileReference; lastKnownFileType = folder; path = flags; sourceTree = "<group>"; };
 		DA57C8281B2B8DEA00913C2C /* SearchingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingTableViewController.h; sourceTree = "<group>"; };
 		DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingTableViewController.m; sourceTree = "<group>"; };
+		DA57C82B1B2F7D0700913C2C /* DecimalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalViewController.h; sourceTree = "<group>"; };
+		DA57C82C1B2F7D0700913C2C /* DecimalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecimalViewController.m; sourceTree = "<group>"; };
+		DA57C82E1B2F92C800913C2C /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		DA57C82F1B2F92C800913C2C /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		DA720F3F1B24820D0019B309 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA720F431B24820D0019B309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA720F441B24820D0019B309 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +107,10 @@
 				DA720F471B24820D0019B309 /* AppDelegate.m */,
 				DA720F721B2627050019B309 /* MainViewController.h */,
 				DA720F731B2627050019B309 /* MainViewController.m */,
+				DA57C82B1B2F7D0700913C2C /* DecimalViewController.h */,
+				DA57C82C1B2F7D0700913C2C /* DecimalViewController.m */,
+				DA57C82E1B2F92C800913C2C /* ResultsViewController.h */,
+				DA57C82F1B2F92C800913C2C /* ResultsViewController.m */,
 				DA57C8281B2B8DEA00913C2C /* SearchingTableViewController.h */,
 				DA57C8291B2B8DEA00913C2C /* SearchingTableViewController.m */,
 				DA57C81D1B2A367C00913C2C /* NextCurrViewController.h */,
@@ -250,7 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57C82A1B2B8DEA00913C2C /* SearchingTableViewController.m in Sources */,
+				DA57C8301B2F92C800913C2C /* ResultsViewController.m in Sources */,
 				DA720F481B24820D0019B309 /* AppDelegate.m in Sources */,
+				DA57C82D1B2F7D0700913C2C /* DecimalViewController.m in Sources */,
 				DA57C81F1B2A367C00913C2C /* NextCurrViewController.m in Sources */,
 				DA720F741B2627050019B309 /* MainViewController.m in Sources */,
 				DA720F451B24820D0019B309 /* main.m in Sources */,

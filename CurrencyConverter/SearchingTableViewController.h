@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchingTableViewController : UITableViewController
+@class SearchingTableViewController;
+
+@protocol SearchingTableViewControllerDelegate <NSObject>
+- (void) updateCurrFor: (SearchingTableViewController *) controller With: (NSDictionary *)updates;
+@end
+
+@interface SearchingTableViewController : UITableViewController 
+
+@property (nonatomic, weak) id <SearchingTableViewControllerDelegate> delegate;
 
 @property UIBarButtonItem *doneButton;
 @property NSMutableArray *currency;
+@property NSArray *searchResults;
+@property (strong, nonatomic) UISearchController *searchController;
 
 - (void) done;
 - (NSMutableArray *) parseJSON;

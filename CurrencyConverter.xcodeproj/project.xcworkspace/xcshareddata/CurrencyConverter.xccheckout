@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>85CB7DDF-0A00-423E-8B58-59B9793A1603</string>
 	<key>IDESourceControlProjectName</key>
-	<string>CurrencyConverter</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0DB56A57C8F22E2FD2A30ECF2B1C85758A4167B3</key>
 		<string>https://github.com/shannonyap/CurrencyConverter.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CurrencyConverter.xcodeproj</string>
+	<string>CurrencyConverter.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0DB56A57C8F22E2FD2A30ECF2B1C85758A4167B3</key>

@@ -12,5 +12,9 @@
 @interface NextCurrViewController : UIViewController
 
 @property (nonatomic,strong) MainViewController *methods;
+@property UILabel *nextCurr;
+@property UIImageView *worldIcon;
+
 - (void) openSearch;
+- (void) nextPage;
 @end

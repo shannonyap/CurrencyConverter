@@ -16,16 +16,17 @@
 #define lightGreen [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f]
 #define cirSize self.view.frame.size.height / 6.25
 
-@interface MainViewController ()
+@interface MainViewController () <SearchingTableViewControllerDelegate>
 
 @end
 
 @implementation MainViewController
 
-@synthesize imgArr, cityView, nextCityView, cityCount, nextCityCount, endFrame, currArr, go, goBar;
+@synthesize imgArr, cityView, nextCityView, cityCount, nextCityCount, endFrame, currArr, go, goBar, choose, worldView, currInfo, goButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Base Currency";
     self.view.backgroundColor = [UIColor blackColor];
     self.navigationController.navigationBar.barTintColor = darkGreen;
     imgArr = [self populateArr: imgArr : @"png" : @"flags"];
@@ -38,14 +39,13 @@
     self.cityView = [self getView: imgArr : CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, (self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height) / 3) :cityCount withTag: 1];
     // next city
     self.nextCityView = [self getView: imgArr : CGRectMake(-self.view.frame.size.width, cityView.frame.origin.y, cityView.frame.size.width, cityView.frame.size.height) : nextCityCount withTag: 1];
-    
+
     // circle
     UIImageView *circ = [[UIImageView alloc] initWithFrame: CGRectMake(self.cityView.frame.size.width/2 - (cirSize / 2), (self.cityView.frame.size.height + self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) - (cirSize / 2), cirSize, cirSize)];
     circ.backgroundColor = circGray;
     circ.layer.borderWidth = 3;
     circ.layer.borderColor = [UIColor blackColor].CGColor;
-    UIImageView *worldView = [self getView: currArr :CGRectMake(self.cityView.frame.size.width/2 - (cirSize * 0.95/ 2), (self.cityView.frame.size.height + self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) - (cirSize *0.95 / 2), cirSize * 0.95, cirSize * 0.95) : 1 withTag: -1];
-    
+    self.worldView = [self getView: currArr :CGRectMake(self.cityView.frame.size.width/2 - (cirSize * 0.95/ 2), (self.cityView.frame.size.height + self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) - (cirSize *0.95 / 2), cirSize * 0.95, cirSize * 0.95) : 1 withTag: -1];
     // background gradient
     UIView* background = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + self.cityView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.cityView.frame.size.height)];
     background.backgroundColor = [UIColor colorWithRed: 80/255.0 green: 200/255.0 blue: 120/255.0 alpha: 1.0f];
@@ -57,45 +57,47 @@
     searchButton.tag = 1;
     UIButton *searching = [[UIButton alloc] initWithFrame: searchCirc.frame];
     [searching addTarget: self action: @selector(openSearch) forControlEvents: UIControlEventTouchUpInside];
+    searching.userInteractionEnabled = NO;
     
     // Tell user to search for currency with label
-    UILabel *choose = [self createAnimLabel: CGRectMake(-self.view.frame.size.width,  self.view.frame.size.height * 0.525, self.view.frame.size.width,  (self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height) / 8 ) withDisplay: @"Select base currency"];
+    self.choose = [self createAnimLabel: CGRectMake(-self.view.frame.size.width,  self.view.frame.size.height * 0.525, self.view.frame.size.width,  (self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height) / 8 ) withDisplay: @"Select base currency"];
     
     // Next currency button
-    self.goBar = [[UIImageView alloc] initWithFrame: CGRectMake(0, self.view.frame.size.height - choose.frame.size.height, self.view.frame.size.width, choose.frame.size.height)];
-    self.goBar.backgroundColor = choose.backgroundColor;
-    self.go = [self getView: currArr : CGRectMake(self.view.frame.size.width/2 - choose.bounds.size.width / 16,  goBar.frame.origin.y + (choose.bounds.size.height/2 - choose.bounds.size.height * 0.35), choose.bounds.size.width / 8, choose.bounds.size.height * 0.7) : 0 withTag: -1];
+    self.goBar = [[UIImageView alloc] initWithFrame: CGRectMake(0, self.view.frame.size.height - self.choose.frame.size.height, self.view.frame.size.width, self.choose.frame.size.height)];
+    self.goBar.backgroundColor = self.choose.backgroundColor;
+    self.go = [self getView: currArr : CGRectMake(self.view.frame.size.width/2 - self.choose.bounds.size.width / 16,  goBar.frame.origin.y + (choose.bounds.size.height/2 - self.choose.bounds.size.height * 0.35), self.choose.bounds.size.width / 8, self.choose.bounds.size.height * 0.7) : 0 withTag: -1];
     self.goBar.layer.shadowOffset = CGSizeMake(1, 0);
     self.goBar.layer.shadowRadius = 2;
     self.goBar.layer.shadowOpacity = 0.4;
-    UIButton *goButton = [[UIButton alloc] initWithFrame: self.goBar.frame];
-    [goButton addTarget: self action: @selector(nextCurr) forControlEvents: UIControlEventTouchDown];
-    [goButton addTarget: self action: @selector(removeTap) forControlEvents: UIControlEventTouchUpInside];
+    self.goButton = [[UIButton alloc] initWithFrame: self.goBar.frame];
+    [self.goButton addTarget: self action: @selector(nextCurr) forControlEvents: UIControlEventTouchDown];
+    [self.goButton addTarget: self action: @selector(removeTap) forControlEvents: UIControlEventTouchUpInside];
     
     [self.view addSubview: background];
-    [self.view addSubview: choose];
+    [self.view addSubview: self.choose];
     [self.view addSubview: searchCirc];
     [self.view addSubview: searchButton];
     [self.view addSubview: self.cityView];
     [self.view addSubview: nextCityView];
     [self.view addSubview: circ];
-    [self.view addSubview: worldView];
+    [self.view addSubview: self.worldView];
     [self setRoundedView: circ toDiameter: cirSize];
     [self setRoundedView: searchCirc toDiameter: cirSize];
     [self.view addSubview: searching];
     [self.view addSubview: self.goBar];
     [self.view addSubview: self.go];
-    [self.view addSubview: goButton];
+    [self.view addSubview: self.goButton];
     
     // Animations
     searchCirc.transform = CGAffineTransformMakeScale(0.01, 0.01);
     searchButton.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    [self animateButton:circ : self.worldView withDuration: 0.3f andDelay: 0];
     [UILabel animateWithDuration: 1 delay: 0.5 options: 0 animations: ^{
-        choose.frame = CGRectMake(0, choose.frame.origin.y, choose.frame.size.width,  choose.frame.size.height);
+        self.choose.frame = CGRectMake(0, self.choose.frame.origin.y, self.choose.frame.size.width,  self.choose.frame.size.height);
     }completion:  ^(BOOL finished){
         [self animateButton: searchButton : searchCirc withDuration: 0.3f andDelay: 0];
+        searching.userInteractionEnabled = YES;
     }];
-    [self animateButton:circ : worldView withDuration: 0.3f andDelay: 0];
     
     self.endFrame = CGRectMake(self.view.frame.size.width,cityView.frame.origin.y, cityView.frame.size.width, cityView.frame.size.height);
     
@@ -191,7 +193,8 @@
                 subview.layer.transform = CATransform3DMakeRotation(M_PI,0.0,0.0,1.0);
                 subview.layer.transform = CATransform3DConcat(subview.layer.transform, CATransform3DMakeRotation(M_PI,0.0,0.0,1.0));
             } completion: ^(BOOL finished){
-                SearchingTableViewController *searchCountry = [[SearchingTableViewController alloc] initWithStyle: UITableViewStylePlain];
+                SearchingTableViewController *searchCountry = [[SearchingTableViewController alloc] initWithNibName: nil bundle: nil];
+                searchCountry.delegate = self;
                 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchCountry];
                 [self.navigationController presentViewController: navController animated: YES completion: nil];
             }];
@@ -207,8 +210,16 @@
 - (void) removeTap {
     self.goBar.alpha = 1.0;
     self.go.alpha = 1.0;
-    NextCurrViewController *nextCurr = [[NextCurrViewController alloc] init];
-    [self.navigationController pushViewController: nextCurr animated: YES];
+    if (self.currInfo != NULL){
+        NextCurrViewController *nextCurr = [[NextCurrViewController alloc] init];
+        [self.navigationController pushViewController: nextCurr animated: YES];
+    }
+}
+
+- (void) updateCurrFor:(SearchingTableViewController *)controller With:(NSDictionary *)updates {
+    self.choose.text = [[updates valueForKey: @"name"] stringByAppendingString:  [@" - " stringByAppendingString: [updates valueForKey: @"currency"]]];
+    self.worldView.image = [[UIImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: [updates valueForKey: @"name"] ofType: @"png" inDirectory: @"roundIcons"]];
+    self.currInfo = updates;
 }
 
 - (void)didReceiveMemoryWarning {
